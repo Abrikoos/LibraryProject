@@ -18,7 +18,7 @@ public class Book {
     public int bookQuantityCopy;
 
     public Book(long serialNumber, String bookName, String authorName, int bookQuantity, int bookQuantityCopy) {
-        this.serialNumber = serialNumber;
+//        this.serialNumber = serialNumber;
         this.bookTitle = bookName;
         this.authorName = authorName;
         this.bookQuantity = bookQuantity;
@@ -26,14 +26,14 @@ public class Book {
     }
 
     public Book(String bookName, String authorName, int bookQuantity, int bookQuantityCopy) {
-        this.serialNumber = serialNumber;
+//        this.serialNumber = serialNumber;
         this.bookTitle = bookName;
         this.authorName = authorName;
         this.bookQuantity = bookQuantity;
         this.bookQuantityCopy = bookQuantityCopy;
     }
     public Book(long serialNumber, String bookName, String authorName) {
-        this.serialNumber = serialNumber;
+//        this.serialNumber = serialNumber;
         this.bookTitle = bookName;
         this.authorName = authorName;
     }
