@@ -3,7 +3,6 @@ package org.example.domain;
 import java.util.Scanner;
 
 public class Books{
-
     Book[] Books = new Book[100];
     public static int count;
 
@@ -21,19 +20,19 @@ public class Books{
         return 1;
     }
 
-//    public void addBook(Book b){
-//        for(int i=0; i < count; i++){
-//            if(this.compareBookObjects(b, this.Books[i]) == 0)
-//                return;
-//        }
-//        if(count<100){
-//            Books[count] = b;
-//            count ++;
-//        }
-//        else{
-//            System.out.println("No space to add more books at this moment.");
-//        }
-//    }
+    public void addBook(Book b){
+        for(int i=0; i < count; i++){
+            if(this.compareBookObjects(b, this.Books[i]) == 0)
+                return;
+        }
+        if(count<100){
+            Books[count] = b;
+            count ++;
+        }
+        else{
+            System.out.println("No space to add more books at this moment.");
+        }
+    }
 
 
 

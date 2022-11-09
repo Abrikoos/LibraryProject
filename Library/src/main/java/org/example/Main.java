@@ -2,15 +2,14 @@ package org.example;
 
 import org.example.domain.Books;
 
+import java.util.Scanner;
+
+
 public class Main {
     public static void main(String[] args) {
 
-        Books myBook = new Books();
-        System.out.println(myBook);
+        Menu menu = new Menu();
+        int menuChoice = menu.showOptions();
 
     }
-
-
-
-
 }

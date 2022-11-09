@@ -25,11 +25,23 @@ public class JPATests {
         tx = em.getTransaction();
     }
 
+    @BeforeEach
     @Test
     void persistBookWithoutAtGeneratedValue() {
+//        String persistenceUnitName = "jpa-hiber-postgres-pu";
+//        EntityManagerFactory emf = Persistence.createEntityManagerFactory(persistenceUnitName);
+//        EntityManager em = emf.createEntityManager();
+//        EntityTransaction tx = em.getTransaction();
+
+        String persistenceUnitName = "jpa-hiber-postgres-pu";
+        emf = Persistence.createEntityManagerFactory(persistenceUnitName);
+        em = emf.createEntityManager();
+        tx = em.getTransaction();
+
         logger.info("start persistBookWithoutAtGeneratedValue");
         tx.begin();
-        em.persist(new Book( "John Scofield", "Surviving in the Java Logging Hell"));
+        em.persist(new Book("John Scofield", "Surviving in the Java Logging Hell",
+                5, 6));
         tx.commit();
 
         // abbreviated in here is your working code

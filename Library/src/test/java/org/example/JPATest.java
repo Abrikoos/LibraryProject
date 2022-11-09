@@ -54,6 +54,7 @@ public class JPATest {
         assertThat(numberOfBooksRetrieved).isEqualTo(books.size());
     }
 
+    @Test
     private void addBooksToTable() {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
