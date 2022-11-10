@@ -48,6 +48,9 @@ public class DatabaseHelper {
         System.out.println("Book with serial number: ' " + inputSerialNr + " ' has been removed from library.");
     }
 
+ //drop methode
+
+
     public int compareBookObjects(Book b1, Book b2){
         if (b1.bookTitle.equalsIgnoreCase(b2.bookTitle)){
             System.out.println("Book with this name already exists.");
