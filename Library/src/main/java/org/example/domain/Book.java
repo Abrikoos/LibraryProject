@@ -13,13 +13,11 @@ public class Book {
     public String bookTitle;
     public String authorName;
     public int bookQuantity;
-    public int bookQuantityCopy;
 
-    public Book(String bookTitle, String authorName, int bookQuantity, int bookQuantityCopy) {
+    public Book(String bookTitle, String authorName, int bookQuantity) {
         this.bookTitle = bookTitle;
         this.authorName = authorName;
         this.bookQuantity = bookQuantity;
-        this.bookQuantityCopy = bookQuantityCopy;
         }
 
 
@@ -29,7 +27,6 @@ public class Book {
     }
 
     public Book() {
-
     }
 
     public long getSerialNumber() {
@@ -64,11 +61,4 @@ public class Book {
         this.bookQuantity = bookQuantity;
     }
 
-    public int getBookQuantityCopy() {
-        return bookQuantityCopy;
-    }
-
-    public void setBookQuantityCopy(int bookQuantityCopy) {
-        this.bookQuantityCopy = bookQuantityCopy;
-    }
 }

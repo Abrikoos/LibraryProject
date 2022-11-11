@@ -25,8 +25,7 @@ public class RegisterBookController {
 
         System.out.println("Enter Quantity of Books:");
         int bookQuantity = input.nextInt();
-        int bookQuantityCopy = bookQuantity;
-        return new Book(bookTitle, authorName, bookQuantity, bookQuantityCopy);
+        return new Book(bookTitle, authorName, bookQuantity);
     }
 
     public void persistBook(Book b) {

@@ -36,7 +36,7 @@ public class BookTests {
 
     @Test
     void persistBookTest(){
-        Book b = new Book("ADS", "Jan",20, 45);
+        Book b = new Book("ADS", "Jan",20);
         rbc.persistBook(b);
       String sqlQuery = "SELECT b FROM Book b WHERE serialNumber = 2";
       Book bk = (Book) em.createQuery(sqlQuery).getSingleResult();

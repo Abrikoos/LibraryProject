@@ -21,13 +21,14 @@ public class DatabaseHelper {
         EntityTransaction tx = em.getTransaction();
 
         tx.begin();
-        em.persist(new Book("Gebroeders Leeuwenhart", "Astrid Lindgren",
-                5, 5));
-        em.persist(new Book("De Brief voor de Koning", "Tonke Dragt",
-                6, 6));
-        em.persist(new Book("Koning van Katoren", "Jan Terlouw",
-                7, 7));
+        em.persist(new Book("Gebroeders Leeuwenhart", "Astrid Lindgren", 5));
+        em.persist(new Book("De Brief voor de Koning", "Tonke Dragt", 6));
+        em.persist(new Book("Koning van Katoren", "Jan Terlouw", 7));
         tx.commit();
+    }
+
+    public void showDatabase(){
+
     }
 
     public void clearDatabase(){
