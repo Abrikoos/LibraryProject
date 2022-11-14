@@ -4,7 +4,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
-import org.example.controller.RegisterBookController;
+import org.example.controller.BookController;
 import org.example.domain.Book;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,7 +15,7 @@ public class BookTests {
 
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa-hiber-postgres-pu");
     private EntityManager em = emf.createEntityManager();
-    private RegisterBookController rbc = new RegisterBookController();
+    private BookController rbc = new BookController();
     private EntityTransaction tx = em.getTransaction();
 
     @BeforeEach

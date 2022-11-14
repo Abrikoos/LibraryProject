@@ -4,11 +4,19 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
+import org.example.DatabaseHelper;
 import org.example.domain.Book;
 
+import java.util.List;
 import java.util.Scanner;
 
-public class RegisterBookController {
+public class BookController {
+    String persistenceUnitName = "jpa-hiber-postgres-pu";
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory(persistenceUnitName);
+    EntityManager em = emf.createEntityManager();
+    EntityTransaction tx = em.getTransaction();
+
+   DatabaseHelper dh = new DatabaseHelper();
 
     public Book registerBook() {
         Scanner input = new Scanner(System.in);
@@ -29,15 +37,17 @@ public class RegisterBookController {
     }
 
     public void persistBook(Book b) {
-        String persistenceUnitName = "jpa-hiber-postgres-pu";
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory(persistenceUnitName);
-        EntityManager em = emf.createEntityManager();
-        EntityTransaction tx = em.getTransaction();
-
         tx.begin();
         em.persist(b);
         tx.commit();
     }
 
-
+public List<Book> getBooks(){
+        String sqlQuery = ("SELECT b FROM Book b");
+        return em.createQuery(sqlQuery).getResultList();
+}
+    public void showDatabase() {
+        List<Book> books = getBooks();
+        dh.printLibrary(books);
+    }
 }

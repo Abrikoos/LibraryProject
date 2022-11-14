@@ -1,11 +1,12 @@
 package org.example;
 
-import org.example.controller.RegisterBookController;
+import org.example.controller.BookController;
 
 import java.util.Scanner;
 
 public class Menu {
     DatabaseHelper dh = new DatabaseHelper();
+    BookController bc = new BookController();
     public int showOptions() {
         Scanner menuNumber = new Scanner(System.in);
         System.out.println("""
@@ -43,6 +44,7 @@ public class Menu {
                     break;
                 // Show all books
                 case 2:
+                    bc.showDatabase();
                     break;
                 // Check out book
                 case 3:
@@ -56,7 +58,7 @@ public class Menu {
                     String answerYesNo = this.yesOrNo("\nDo you want to register a book?");
                     switch (answerYesNo) {
                         case "Y":
-                            RegisterBookController rb = new RegisterBookController();
+                            BookController rb = new BookController();
                             rb.persistBook(rb.registerBook());
                             break;
                         case "N":
@@ -100,7 +102,7 @@ public class Menu {
                                     """);
         String yesOrNoAnswer = yesOrNoInput.nextLine().toUpperCase();
         if (!yesOrNoAnswer.equals("Y") && !yesOrNoAnswer.equals("N")) {
-            System.out.println("Please try again.");
+                System.out.println("Please try again.");
             yesOrNo(string);
         }
         return yesOrNoAnswer;
