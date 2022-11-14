@@ -6,6 +6,7 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 import org.example.controller.BookController;
 import org.example.domain.Book;
+import org.example.domain.Menu;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

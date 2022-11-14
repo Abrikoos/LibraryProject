@@ -64,7 +64,7 @@ public class DatabaseHelper {
         System.out.println("|  ID  |" + fourthLineBookTitleSectionOne + "Book title" + fourthLineBookTitleSectionTwo + "|"
                 + fourthLineAuthorSectionOne + "Author" + fourthLineAuthorSectionTwo + "|"
                 + fourthLineQuantitySectionOne + "Quantity" + fourthLineQuantitySectionTwo + "|");
-        System.out.println("+" + "".repeat((Math.max(0, totalSize - 2))) + "+");
+        System.out.println("-".repeat(Math.max(0, totalSize)));
 
         for (Book book : books) {
             long serialNumber = book.getSerialNumber();

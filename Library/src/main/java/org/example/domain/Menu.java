@@ -1,5 +1,6 @@
-package org.example;
+package org.example.domain;
 
+import org.example.DatabaseHelper;
 import org.example.controller.BookController;
 
 import java.util.Scanner;
