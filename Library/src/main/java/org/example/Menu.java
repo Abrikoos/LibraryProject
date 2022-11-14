@@ -5,19 +5,19 @@ import org.example.controller.BookController;
 import java.util.Scanner;
 
 public class Menu {
-    DatabaseHelper dh = new DatabaseHelper();
-    BookController bc = new BookController();
+    private final DatabaseHelper dh = new DatabaseHelper();
+   private final BookController bc = new BookController();
+
     public int showOptions() {
         Scanner menuNumber = new Scanner(System.in);
         System.out.println("""
                 -------------------------------------------
                 | Please choose one of the options below: |
                 |                                         |
-                | Option 1: Search Book                   |
-                | Option 2: Show All Books                |
-                | Option 3: Check Out Book                |
-                | Option 4: Check In Book                 |
-                | Option 5: Administrator menu            |
+                | Option 1: Show All Books                |
+                | Option 2: Check Out Book                |
+                | Option 3: Check In Book                 |
+                | Option 4: Administrator menu            |
                 | Option 0: Exit Application              |
                 -------------------------------------------
                 Enter your number: 
@@ -34,36 +34,73 @@ public class Menu {
         return menuChoice;
     }
 
-    public void switchMenu(){
+    public int adminMenu() {
+        Scanner adminMenuNr = new Scanner(System.in);
+        System.out.println("""
+                -------------------------------------------
+                | Please choose one of the options below: |
+                |                                         |
+                | Option 1: Register Book                 |
+                | Option 2: Delete Book                   |
+                | Option 3: Clear database                |
+                -------------------------------------------
+                Enter one of the given option numbers: 
+                """);
+        int adminChoice = adminMenuNr.nextInt();
+        return adminChoice;
+    }
+
+    public void switchMenu() {
         int menuChoice;
         do {
             menuChoice = this.showOptions();
             switch (menuChoice) {
-                // Search Book
+/*                // Search Book
                 case 1:
-                    break;
+                    break;*/
                 // Show all books
-                case 2:
+                case 1:
                     bc.showDatabase();
                     break;
                 // Check out book
-                case 3:
+                case 2:
+                    bc.checkOutBook();
                     break;
                 // Check in book
-                case 4:
+                case 3:
+                    bc.checkInBook();
                     break;
 
                 // Option 5: Administrator. Has option to register books, delete one book and clear the database.
-                case 5:
-                    String answerYesNo = this.yesOrNo("\nDo you want to register a book?");
-                    switch (answerYesNo) {
-                        case "Y":
-                            BookController rb = new BookController();
-                            rb.persistBook(rb.registerBook());
-                            break;
-                        case "N":
+                case 4:
+                    int adminChoice;
+                    adminChoice = this.adminMenu();
+                    switch (adminChoice) {
+                        case 1:
+                            String answerYesNo = this.yesOrNo("\nDo you want to register a book?");
+                            switch (answerYesNo) {
+                                case "Y":
+                                    BookController rb = new BookController();
+                                    rb.persistBook(rb.registerBook());
+                                    break;
+                                case "N":
+                                    adminMenu();
+                                    break;
+                            }
+                        case 2:
+                            answerYesNo = this.yesOrNo("\nDo you want to register a book?");
+                            switch (answerYesNo) {
+                                case "Y":
+                                    BookController rb = new BookController();
+                                    rb.persistBook(rb.registerBook());
+                                    break;
+                                case "N":
+                                    adminMenu();
+                                    break;
+                            }
+                        case 3:
                             answerYesNo = this.yesOrNo("\nWould you like to delete a book from the database?");
-                            switch (answerYesNo){
+                            switch (answerYesNo) {
                                 case "Y":
                                     dh.deleteBook();
                                 case "N":
@@ -80,16 +117,17 @@ public class Menu {
                             }
                     }
                 case 0:
-                    break;
+                    return;
 
                 default:
                     System.out.println("Please enter a number between 0 and 5. \n");
             }
         } while (menuChoice != 0);
 
-        if(menuChoice == 0){
+        if (menuChoice == 0) {
             System.out.println("Goodbye! \n");
         }
+
     }
 
 
@@ -97,12 +135,12 @@ public class Menu {
         System.out.println(string);
         Scanner yesOrNoInput = new Scanner(System.in);
         System.out.println("""                             
-                                    Press 'Y' for 'yes'.
-                                    Press 'N' for 'no'.
-                                    """);
+                Press 'Y' for 'yes'.
+                Press 'N' for 'no'.
+                """);
         String yesOrNoAnswer = yesOrNoInput.nextLine().toUpperCase();
         if (!yesOrNoAnswer.equals("Y") && !yesOrNoAnswer.equals("N")) {
-                System.out.println("Please try again.");
+            System.out.println("Please try again.");
             yesOrNo(string);
         }
         return yesOrNoAnswer;

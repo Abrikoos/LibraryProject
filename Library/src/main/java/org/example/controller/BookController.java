@@ -5,8 +5,10 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 import org.example.DatabaseHelper;
+import org.example.Menu;
 import org.example.domain.Book;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -16,23 +18,21 @@ public class BookController {
     EntityManager em = emf.createEntityManager();
     EntityTransaction tx = em.getTransaction();
 
-   DatabaseHelper dh = new DatabaseHelper();
+   private final DatabaseHelper dh = new DatabaseHelper();
+    private final Menu m = new Menu();
 
+    private final Scanner scanner = new Scanner(System.in);
     public Book registerBook() {
-        Scanner input = new Scanner(System.in);
 
-//        System.out.println("Enter serial number of the book: ");
-//        int serialNumber = input.nextInt();
-//        input.nextLine();
 
         System.out.println("Enter book name: ");
-        String bookTitle = input.nextLine();
+        String bookTitle = scanner.nextLine();
 
         System.out.println("Enter Author Name:");
-        String authorName = input.nextLine();
+        String authorName = scanner.nextLine();
 
         System.out.println("Enter Quantity of Books:");
-        int bookQuantity = input.nextInt();
+        int bookQuantity = scanner.nextInt();
         return new Book(bookTitle, authorName, bookQuantity);
     }
 
@@ -42,12 +42,34 @@ public class BookController {
         tx.commit();
     }
 
-public List<Book> getBooks(){
+    public List<Book> getBooks() {
         String sqlQuery = ("SELECT b FROM Book b");
         return em.createQuery(sqlQuery).getResultList();
-}
+    }
+
     public void showDatabase() {
         List<Book> books = getBooks();
         dh.printLibrary(books);
+    }
+
+    public void checkOutBook() {
+        boolean checkOutAnother = true;
+        while(checkOutAnother) {
+            System.out.println("Give the serial number of your book: ");
+            long serialNumber = scanner.nextLong();
+            List<Book> books = new ArrayList<>();
+            String sqlQuery = "SELECT b FROM Book b";
+            Book b = em.find(Book.class, serialNumber);
+            b.setBookQuantity(b.getBookQuantity() - 1);
+            books.add(b);
+            String response = m.yesOrNo("Do you want to check out another book?" );
+            if(response.equals("N")){
+                checkOutAnother = false;
+            }
+        }
+    }
+
+    public void checkInBook() {
+
     }
 }

@@ -6,8 +6,6 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 import org.example.domain.Book;
 
-
-import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Scanner;
 
@@ -66,7 +64,7 @@ public class DatabaseHelper {
         System.out.println("|  ID  |" + fourthLineBookTitleSectionOne + "Book title" + fourthLineBookTitleSectionTwo + "|"
                 + fourthLineAuthorSectionOne + "Author" + fourthLineAuthorSectionTwo + "|"
                 + fourthLineQuantitySectionOne + "Quantity" + fourthLineQuantitySectionTwo + "|");
-        System.out.println("+" + "=".repeat((Math.max(0, totalSize - 2))) + "+");
+        System.out.println("+" + "".repeat((Math.max(0, totalSize - 2))) + "+");
 
         for (Book book : books) {
             long serialNumber = book.getSerialNumber();
@@ -98,7 +96,7 @@ public class DatabaseHelper {
             default:
                 throw new RuntimeException("Invalid.");
         }
-        ;
+
 
         List column = em.createQuery(sqlQuery).getResultList();
         int size = 0;
