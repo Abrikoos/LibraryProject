@@ -15,7 +15,7 @@ public class BookTests {
 
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa-hiber-postgres-pu");
     private EntityManager em = emf.createEntityManager();
-    private BookController rbc = new BookController();
+    private BookController rbc = new BookController(new Menu());
     private EntityTransaction tx = em.getTransaction();
 
     @BeforeEach

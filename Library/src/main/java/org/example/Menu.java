@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Menu {
     private final DatabaseHelper dh = new DatabaseHelper();
-   private final BookController bc = new BookController();
+    private final BookController bc = new BookController(this);
 
     public int showOptions() {
         Scanner menuNumber = new Scanner(System.in);
@@ -42,7 +42,8 @@ public class Menu {
                 |                                         |
                 | Option 1: Register Book                 |
                 | Option 2: Delete Book                   |
-                | Option 3: Clear database                |
+                | Option 3: Reset database                |
+                | Option 0: Go back to main menu          |
                 -------------------------------------------
                 Enter one of the given option numbers: 
                 """);
@@ -74,53 +75,44 @@ public class Menu {
                 // Option 5: Administrator. Has option to register books, delete one book and clear the database.
                 case 4:
                     int adminChoice;
-                    adminChoice = this.adminMenu();
-                    switch (adminChoice) {
-                        case 1:
-                            String answerYesNo = this.yesOrNo("\nDo you want to register a book?");
-                            switch (answerYesNo) {
-                                case "Y":
-                                    BookController rb = new BookController();
-                                    rb.persistBook(rb.registerBook());
-                                    break;
-                                case "N":
-                                    adminMenu();
-                                    break;
-                            }
-                        case 2:
-                            answerYesNo = this.yesOrNo("\nDo you want to register a book?");
-                            switch (answerYesNo) {
-                                case "Y":
-                                    BookController rb = new BookController();
-                                    rb.persistBook(rb.registerBook());
-                                    break;
-                                case "N":
-                                    adminMenu();
-                                    break;
-                            }
-                        case 3:
-                            answerYesNo = this.yesOrNo("\nWould you like to delete a book from the database?");
-                            switch (answerYesNo) {
-                                case "Y":
-                                    dh.deleteBook();
-                                case "N":
-                                    answerYesNo = this.yesOrNo("\nWould you like to clear the book database?");
-                                    switch (answerYesNo) {
-                                        case "Y":
-                                            dh.clearDatabase();
-                                            dh.populateDatabase();
-                                            break;
-                                        case "N":
-                                            System.out.println("\nPlease choose another option\n");
-                                            break;
-                                    }
-                            }
-                    }
-                case 0:
-                    return;
+                    do {
+                        adminChoice = this.adminMenu();
+                        switch (adminChoice) {
+                            case 1:
+                                String answerYesNo = this.yesOrNo("\nDo you want to register a book?");
+                                switch (answerYesNo) {
+                                    case "Y":
+                                        bc.persistBook(bc.registerBook());
+                                        break;
+                                    case "N":
+                                        adminMenu();
+                                        break;
+                                }
+                            case 2:
+                                answerYesNo = this.yesOrNo("\nWould you like to delete a book from the database?");
+                                switch (answerYesNo) {
+                                    case "Y":
+                                        dh.deleteBook();
+                                    case "N":
+                                        adminMenu();
+                                        break;
+                                }
+                            case 3:
+                                answerYesNo = this.yesOrNo("\nWould you like to reset the book database?");
+                                switch (answerYesNo) {
+                                    case "Y":
+                                        dh.clearDatabase();
+                                        dh.populateDatabase();
+                                        break;
+                                    case "N":
+                                        System.out.println("\nPlease choose another option\n");
+                                        break;
+                                }
+                        }
+                    } while (adminChoice != 0);
 
                 default:
-                    System.out.println("Please enter a number between 0 and 5. \n");
+                    System.out.println("Please enter a number between 0 and 4. \n");
             }
         } while (menuChoice != 0);
 

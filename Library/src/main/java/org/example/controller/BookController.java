@@ -19,7 +19,11 @@ public class BookController {
     EntityTransaction tx = em.getTransaction();
 
    private final DatabaseHelper dh = new DatabaseHelper();
-    private final Menu m = new Menu();
+    private final Menu menu;
+
+    public BookController(Menu m) {
+        this.menu = m;
+    }
 
     private final Scanner scanner = new Scanner(System.in);
     public Book registerBook() {
@@ -62,7 +66,7 @@ public class BookController {
             Book b = em.find(Book.class, serialNumber);
             b.setBookQuantity(b.getBookQuantity() - 1);
             books.add(b);
-            String response = m.yesOrNo("Do you want to check out another book?" );
+            String response = menu.yesOrNo("Do you want to check out another book?" );
             if(response.equals("N")){
                 checkOutAnother = false;
             }
