@@ -76,7 +76,6 @@ public class Menu {
                 // Option 5: Administrator. Has option to register books, delete one book and clear the database.
                 case 4:
                     int adminChoice;
-                    do {
                         adminChoice = this.adminMenu();
                         switch (adminChoice) {
                             case 1:
@@ -84,36 +83,50 @@ public class Menu {
                                 switch (answerYesNo) {
                                     case "Y":
                                         bc.persistBook(bc.registerBook());
+                                        adminMenu();
                                         break;
                                     case "N":
                                         adminMenu();
                                         break;
                                 }
+                                break;
                             case 2:
                                 answerYesNo = this.yesOrNo("\nWould you like to delete a book from the database?");
                                 switch (answerYesNo) {
                                     case "Y":
                                         dh.deleteBook();
+                                        adminMenu();
                                     case "N":
                                         adminMenu();
                                         break;
                                 }
+                                break;
                             case 3:
                                 answerYesNo = this.yesOrNo("\nWould you like to reset the book database?");
                                 switch (answerYesNo) {
                                     case "Y":
                                         dh.clearDatabase();
                                         dh.populateDatabase();
+                                        adminMenu();
                                         break;
                                     case "N":
                                         System.out.println("\nPlease choose another option\n");
+                                        adminMenu();
                                         break;
                                 }
+                                break;
+                            case 0:
+                                break;
+                            default:
+                                System.out.println("Please enter a number between 0 and 4. \n");
+                                adminMenu();
+                                break;
                         }
-                    } while (adminChoice != 0);
+                        break;
 
                 default:
                     System.out.println("Please enter a number between 0 and 4. \n");
+                    break;
             }
         } while (menuChoice != 0);
 

@@ -30,7 +30,7 @@ public class BookController {
     public Book registerBook() {
 
 
-        System.out.println("Enter book name: ");
+        System.out.println("Enter Book Title: ");
         String bookTitle = scanner.nextLine();
 
         System.out.println("Enter Author Name:");
