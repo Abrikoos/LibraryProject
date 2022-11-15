@@ -34,7 +34,7 @@ public class DatabaseHelper {
         int columnSizeQuantity = getColumnSize("Quantity");
         int totalSize = 17 + columnSizeBookTitle + columnSizeAuthor + columnSizeQuantity;
 
-        System.out.println("=".repeat(Math.max(0, totalSize)));
+        System.out.println("-".repeat(Math.max(0, totalSize)));
         String secondLineSectionOne = " ".repeat(Math.max(0, (totalSize - 14) / 2));
         if (totalSize % 2 != 0) {
             String secondLineSectionTwo = " ".repeat(Math.max(0, (totalSize - 14) / 2) + 1);
@@ -42,7 +42,7 @@ public class DatabaseHelper {
         } else {
             System.out.println("|" + secondLineSectionOne + "List - Books" + secondLineSectionOne + "|");
         }
-        System.out.println("+" + "-".repeat((Math.max(0, totalSize - 2))) + "+");
+        System.out.println("" + "-".repeat((Math.max(0, totalSize ))) + "");
 
         String fourthLineBookTitleSectionOne = " ".repeat(Math.max(0, (columnSizeBookTitle - 10 + 2) / 2));
         String fourthLineBookTitleSectionTwo = " ".repeat(Math.max(0, (columnSizeBookTitle - 10 + 2) / 2));
@@ -78,7 +78,7 @@ public class DatabaseHelper {
                     + bookQuantity + " ".repeat(Math.max(0, (columnSizeQuantity - Integer.toString(bookQuantity).length()))) + " |");
 
         }
-        System.out.println("=".repeat(Math.max(0, totalSize)));
+        System.out.println("-".repeat(Math.max(0, totalSize)));
     }
 
     private int getColumnSize(String columnName) throws RuntimeException {

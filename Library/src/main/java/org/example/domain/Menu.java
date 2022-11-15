@@ -57,10 +57,6 @@ public class Menu {
         do {
             menuChoice = this.showOptions();
             switch (menuChoice) {
-/*                // Search Book
-                case 1:
-                    break;*/
-                // Show all books
                 case 1:
                     bc.showDatabase();
                     break;
@@ -72,8 +68,7 @@ public class Menu {
                 case 3:
                     bc.checkInBook();
                     break;
-
-                // Option 5: Administrator. Has option to register books, delete one book and clear the database.
+                // Option 4: Administrator. Has option to register books, delete one book and clear the database.
                 case 4:
                     int adminChoice;
                         adminChoice = this.adminMenu();

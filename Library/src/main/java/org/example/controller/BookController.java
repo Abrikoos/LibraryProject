@@ -28,8 +28,9 @@ public class BookController {
     private final Scanner scanner = new Scanner(System.in);
 
     public Book registerBook() {
-
-
+//        if(scanner.hasNextLine()){
+//            scanner.nextLine();
+//        }
         System.out.println("Enter Book Title: ");
         String bookTitle = scanner.nextLine();
 
@@ -61,7 +62,7 @@ public class BookController {
         boolean checkOutAnother = true;
         List<Book> books = new ArrayList<>();
         while (checkOutAnother) {
-            System.out.println("Give the serial number of your book: ");
+            System.out.println("Give the serial number (ID) of your book: ");
             long serialNumber = scanner.nextLong();
             String sqlQuery = "SELECT b FROM Book b";
             Book b = em.find(Book.class, serialNumber);
@@ -84,7 +85,7 @@ public class BookController {
         boolean checkOutAnother = true;
         List<Book> books = new ArrayList<>();
         while (checkOutAnother) {
-            System.out.println("Give the serial number of your book: ");
+            System.out.println("Give the serial number (ID) of your book: ");
             long serialNumber = scanner.nextLong();
             String sqlQuery = "SELECT b FROM Book b";
             Book b = em.find(Book.class, serialNumber);
