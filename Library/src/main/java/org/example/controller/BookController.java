@@ -53,53 +53,6 @@ public class BookController {
         return em.createQuery(sqlQuery).getResultList();
     }
 
-    public void showDatabase() {
-        List<Book> books = getBooks();
-        dh.printLibrary(books);
-    }
 
-    public void checkOutBook() {
-        boolean checkOutAnother = true;
-        List<Book> books = new ArrayList<>();
-        while (checkOutAnother) {
-            System.out.println("Give the serial number (ID) of your book: ");
-            long serialNumber = scanner.nextLong();
-            String sqlQuery = "SELECT b FROM Book b";
-            Book b = em.find(Book.class, serialNumber);
-            b.setBookQuantity(b.getBookQuantity() - 1);
-            books.add(b);
-            String response = menu.yesOrNo("Do you want to check out another book?");
-            if (response.equals("N")) {
-                checkOutAnother = false;
-            }
-        }
-        tx.begin();
-        for (Book b : books) {
-            em.persist(b);
-        }
-        tx.commit();
 
-    }
-
-    public void checkInBook() {
-        boolean checkOutAnother = true;
-        List<Book> books = new ArrayList<>();
-        while (checkOutAnother) {
-            System.out.println("Give the serial number (ID) of your book: ");
-            long serialNumber = scanner.nextLong();
-            String sqlQuery = "SELECT b FROM Book b";
-            Book b = em.find(Book.class, serialNumber);
-            b.setBookQuantity(b.getBookQuantity() + 1);
-            books.add(b);
-            String response = menu.yesOrNo("Do you want to check in another book?");
-            if (response.equals("N")) {
-                checkOutAnother = false;
-            }
-        }
-        tx.begin();
-        for (Book b : books) {
-            em.persist(b);
-        }
-        tx.commit();
-    }
 }
