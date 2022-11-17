@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class User {
+public class Member {
     @Id
     @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
@@ -38,12 +38,12 @@ public class User {
         this.books = books;
     }
 
-    public User(String userName, Set<Book> books) {
+    public Member(String userName, Set<Book> books) {
         this.userName = userName;
         this.books = books;
     }
 
-    public User() {
+    public Member() {
     }
 
     public void addBookToList(){

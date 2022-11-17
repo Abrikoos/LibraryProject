@@ -20,7 +20,6 @@ public class BookTests {
     private EntityTransaction tx = em.getTransaction();
 
     @BeforeEach
-    @Test
     void setUp() {
         DatabaseHelper dh = new DatabaseHelper();
 //        dh.clearDatabase();
